@@ -1,102 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
 
-const Card = () => {
+const Card = (props) => {
+    const [title] = useState(props.title);
+    const [description] = useState(props.description);
+    const [price] = useState(props.price);
+    const [image] = useState(props.image);
     return (
-        <MDBRow>
-            <MDBCol md='4'>
-                <MDBCard narrow>
-                    <MDBView cascade>
-                        <MDBCardImage
-                            hover
-                            overlay='white-slight'
-                            className='card-img-top'
-                            src='https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg'
-                            alt='food'
-                        />
-                    </MDBView>
 
-                    <MDBCardBody>
-                        <h5 className='pink-text'>
-                            <MDBIcon icon='utensils' /> Culinary
-            </h5>
+        <MDBCol md='4'>
+            <MDBCard narrow>
+                <MDBView cascade>
+                    <MDBCardImage
+                        hover
+                        overlay='white-slight'
+                        className='card-img-top'
+                        src={image}
+                        alt='food'
+                    />
+                </MDBView>
 
-                        <MDBCardTitle className='font-weight-bold'>
-                            Cheat day inspirations
-            </MDBCardTitle>
+                <MDBCardBody>
+                    <h5 className='pink-text'>
+                        <MDBIcon icon='utensils' /> {title}
+                    </h5>
 
-                        <MDBCardText>
-                            Sed ut perspiciatis unde omnis iste natus sit voluptatem
-                            accusantium doloremque laudantium, totam rem aperiam.
-            </MDBCardText>
+                    <MDBCardTitle className='font-weight-bold'>
+                        {price}
+                    </MDBCardTitle>
 
-                        <OrderButton />
-                    </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
+                    <MDBCardText>
+                        {description}
+                    </MDBCardText>
 
-            <MDBCol md='4'>
-                <MDBCard narrow>
-                    <MDBView cascade>
-                        <MDBCardImage
-                            hover
-                            overlay='white-slight'
-                            className='card-img-top'
-                            src='https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg'
-                            alt='food'
-                        />
-                    </MDBView>
-
-                    <MDBCardBody>
-                        <h5 className='pink-text'>
-                            <MDBIcon icon='utensils' /> Culinary
-            </h5>
-
-                        <MDBCardTitle className='font-weight-bold'>
-                            Cheat day inspirations
-            </MDBCardTitle>
-
-                        <MDBCardText>
-                            Sed ut perspiciatis unde omnis iste natus sit voluptatem
-                            accusantium doloremque laudantium, totam rem aperiam.
-            </MDBCardText>
-
-                        <OrderButton />
-                    </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
-
-            <MDBCol md='4'>
-                <MDBCard narrow>
-                    <MDBView cascade>
-                        <MDBCardImage
-                            hover
-                            overlay='white-slight'
-                            className='card-img-top'
-                            src='https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg'
-                            alt='food'
-                        />
-                    </MDBView>
-
-                    <MDBCardBody>
-                        <h5 className='pink-text'>
-                            <MDBIcon icon='utensils' /> Culinary
-            </h5>
-
-                        <MDBCardTitle className='font-weight-bold'>
-                            Cheat day inspirations
-            </MDBCardTitle>
-
-                        <MDBCardText>
-                            Sed ut perspiciatis unde omnis iste natus sit voluptatem
-                            accusantium doloremque laudantium, totam rem aperiam.
-            </MDBCardText>
-
-                        <OrderButton />
-                    </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
-        </MDBRow>
+                    <OrderButton />
+                </MDBCardBody>
+            </MDBCard>
+        </MDBCol>
     )
 }
 export const OrderButton = () => {
