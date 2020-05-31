@@ -1,34 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { MDBRow, MDBCard, MDBCardBody, MDBTooltip, MDBTable, MDBTableBody, MDBTableHead, MDBInput, MDBBtn } from "mdbreact";
-import { Navbar } from "../components/index"
+import { Navbar } from "../components/index";
+import { Context as productContext } from "../context/products";
 const Cart = () => {
-    const [data, setData] = useState([
-        {
-            src: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg",
-            title: "iPhone",
-            subTitle: "Apple",
-            color: "White",
-            price: "800",
-            qty: "2"
-        },
-        {
-            src: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/6.jpg",
-            title: "Headphones",
-            subTitle: "Sony",
-            color: "Red",
-            price: "200",
-            qty: "2"
-        },
-        {
-            src: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/1.jpg",
-            title: "iPad Pro",
-            subTitle: "Apple",
-            color: "Gold",
-            price: "600",
-            qty: "1"
-        },
-    ]);
-    const [columns, setColumns] = useState(
+    const [cart] = useContext(productContext);
+    const [data, setData] = useState([]);
+    const [quantity, setQuantity] = useState(0);
+    const [amount, setAmount] = useState(0);
+    const [price, setPrice] = useState(0);
+    useEffect(() => {
+        setData(cart)
+    }, [cart])
+    const calculateAmount = useCallback(() => {
+        const amount = quantity * price;
+        setAmount(amount);
+    }, [quantity, price]);
+    const onChange = (e) => {
+        setQuantity(e.target.value);
+        calculateAmount();
+    }
+    const [columns] = useState(
         [
             {
                 label: '',
@@ -37,10 +28,6 @@ const Cart = () => {
             {
                 label: <strong>Product</strong>,
                 field: 'product'
-            },
-            {
-                label: <strong>Color</strong>,
-                field: 'color'
             },
             {
                 label: <strong>Price</strong>,
@@ -52,7 +39,7 @@ const Cart = () => {
             },
             {
                 label: <strong>Amount</strong>,
-                field: 'amount'
+                field: 'qty'
             },
             {
                 label: '',
@@ -65,14 +52,14 @@ const Cart = () => {
     data.map(row => {
         return rows.push(
             {
-                'img': <img src={row.src} alt="" className="img-fluid z-depth-0" />,
-                'product': [<h5 className="mt-3" key={new Date().getDate + 1}><strong>{row.title}</strong></h5>, <p key={new
+                'img': <img src={row.image} alt="" className="img-fluid z-depth-0" />,
+                'product': [<h5 className="mt-2" key={new Date().getDate + 1}><strong>{row.title}</strong></h5>, <p key={new
                     Date().getDate} className="text-muted">{row.subTitle}</p>],
-                'color': row.color,
-                'price': `$${row.price}`,
+                'price': `${row.price}`,
                 'qty':
-                    <MDBInput type="number" default={row.qty} className="form-control" style={{ width: "100px" }} />,
-                'amount': <strong>${row.qty * row.price}</strong>,
+                    <React.Fragment>
+                        <MDBInput type="number" default={quantity} className="form-control" style={{ width: "100px" }} onChange={onChange} /><span>{setPrice(row.price)}</span></React.Fragment>,
+                'amount': <strong>{amount}</strong>,
                 'button':
                     <MDBTooltip placement="top">
                         <MDBBtn color="unique" size="md">
@@ -82,13 +69,13 @@ const Cart = () => {
                     </MDBTooltip>
             }
         )
-    });
 
+    });
     return (
         <React.Fragment>
-            <Navbar title="Shopping Cart" />
+            <Navbar title="Shopping Cart" count={cart.length} />
             <div class="container">
-                <MDBRow className="my-2" center>
+                <MDBRow className="my-3" center>
                     <MDBCard className="w-100">
                         <MDBCardBody>
                             <MDBTable className="product-table">

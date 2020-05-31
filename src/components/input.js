@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MDBInput, MDBFileInput } from "mdbreact";
+import { MDBInput } from "mdbreact";
 const InputField = (props) => {
   const [label] = useState(props.label);
   return (

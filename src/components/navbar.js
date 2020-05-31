@@ -15,7 +15,8 @@ const Navbar = (props) => {
     const [open, setOpen] = useState({
         open: false,
     });
-    const [title] = useState(props.title)
+    const [title] = useState(props.title);
+    const [count] = useState(props.count)
     const toggleCollapse = () => {
         setOpen({ open: !open });
     };
@@ -31,7 +32,7 @@ const Navbar = (props) => {
                 <MDBNavbarNav right>
                     <MDBNavItem active>
                         <MDBNavLink to="/cart">
-                            <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-shopping-cart"><span>{count}</span></i>
                         </MDBNavLink>
                     </MDBNavItem>
                 </MDBNavbarNav>

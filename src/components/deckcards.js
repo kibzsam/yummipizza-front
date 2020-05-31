@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
-
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBView, MDBIcon } from 'mdbreact';
 const Card = (props) => {
     const [title] = useState(props.title);
     const [description] = useState(props.description);
     const [price] = useState(props.price);
     const [image] = useState(props.image);
+    const [click] = useState(props.click);
     return (
 
         <MDBCol md='4'>
@@ -33,16 +33,10 @@ const Card = (props) => {
                         {description}
                     </MDBCardText>
 
-                    <OrderButton />
+                    <MDBBtn color='unique' onClick={click}>Order</MDBBtn>
                 </MDBCardBody>
             </MDBCard>
         </MDBCol>
     )
 }
-export const OrderButton = () => {
-    return (
-        <MDBBtn color='unique'>Order</MDBBtn>
-    )
-}
-
-export default Card;
+export default (Card);
