@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import { Context as productContext } from "../context/products";
 const CartPanel = (props) => {
-    const [name] = useState(props.name);
-    const [pic] = useState(props.pic);
-    const [desc] = useState(props.desc);
-    const [prices] = useState(props.prices);
-    const [remove] = useState(props.remove)
+    const { cartData, setCartData } = useContext(productContext);
+    const { name, pic, desc, prices, id } = props;
+    const remove = () => {
+        const newCartData = cartData.filter(item => item.id !== id)
+        setCartData(newCartData);
+        console.log(newCartData)
+    }
     return (
         <MDBRow>
             <MDBCol md="3"><img src={pic} style={{ width: '10rems', height: '8rem' }} alt="pizza" /></MDBCol>

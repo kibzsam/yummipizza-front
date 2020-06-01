@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBView, MDBIcon } from 'mdbreact';
+import { Context as cartContext } from "../context/products";
 const Card = (props) => {
-    const [title] = useState(props.title);
-    const [description] = useState(props.description);
-    const [price] = useState(props.price);
-    const [image] = useState(props.image);
-    const [clicking] = useState(props.clicking);
+    const { title, description, price, image } = props
+    const { setCartData, cartData } = useContext(cartContext)
+    const addItemToCart = () => {
+        setCartData([...cartData, {
+            image: image,
+            price: price,
+            description: description,
+            title: title
+        }])
+    }
     return (
         <MDBCol md='4'>
             <MDBCard narrow>
@@ -32,7 +38,7 @@ const Card = (props) => {
                         {description}
                     </MDBCardText>
 
-                    <MDBBtn color='unique' onClick={clicking}>Add to Cart</MDBBtn>
+                    <MDBBtn color='unique' onClick={addItemToCart}>Add to Cart</MDBBtn>
                 </MDBCardBody>
             </MDBCard>
         </MDBCol>
