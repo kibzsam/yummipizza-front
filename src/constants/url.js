@@ -1,1 +1,1 @@
-export const URI = "http://127.0.0.1:8000/api/";
+export const URI = "https://calm-scrubland-15190.herokuapp.com/";

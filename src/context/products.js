@@ -6,7 +6,7 @@ const Provider = (props) => {
     const [products, setProducts] = useState([]);
     const [cartData, setCartData] = useState([]);
     useEffect(() => {
-        axios.get(`${URI}products`).then(res => {
+        axios.get(`${URI}api/products`).then(res => {
             const products = res.data;
             setProducts(products);
         }).catch(error => console.log(error))
