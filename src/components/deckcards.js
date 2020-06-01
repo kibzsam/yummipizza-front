@@ -5,9 +5,8 @@ const Card = (props) => {
     const [description] = useState(props.description);
     const [price] = useState(props.price);
     const [image] = useState(props.image);
-    const [click] = useState(props.click);
+    const [clicking] = useState(props.clicking);
     return (
-
         <MDBCol md='4'>
             <MDBCard narrow>
                 <MDBView cascade>
@@ -33,7 +32,7 @@ const Card = (props) => {
                         {description}
                     </MDBCardText>
 
-                    <MDBBtn color='unique' onClick={click}>Order</MDBBtn>
+                    <MDBBtn color='unique' onClick={clicking}>Add to Cart</MDBBtn>
                 </MDBCardBody>
             </MDBCard>
         </MDBCol>
