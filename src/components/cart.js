@@ -7,7 +7,6 @@ const CartPanel = (props) => {
     const remove = () => {
         const newCartData = cartData.filter(item => item.id !== id)
         setCartData(newCartData);
-        console.log(newCartData)
     }
     return (
         <MDBRow>
