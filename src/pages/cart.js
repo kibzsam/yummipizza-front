@@ -3,7 +3,7 @@ import { MDBRow, MDBCard } from "mdbreact";
 import { Navbar, CartPanel } from "../components/index";
 import { Context as productContext } from "../context/products";
 const Cart = () => {
-    const { cartData} = useContext(productContext);
+    const { cartData } = useContext(productContext);
     return (
         <React.Fragment>
             <Navbar title="Shopping Cart" count={cartData.length} />
@@ -14,6 +14,7 @@ const Cart = () => {
                             cartData ? cartData.map((item, index) =>
                                 <CartPanel
                                     key={index}
+                                    id={item.id}
                                     name={item.title}
                                     desc={item.description}
                                     pic={item.image}
