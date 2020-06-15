@@ -32,7 +32,7 @@ const Navbar = (props) => {
                 <MDBNavbarNav right>
                     <MDBNavItem active>
                         <MDBNavLink to="/cart">
-                            <i class="fas fa-shopping-cart"><span>{count}</span></i>
+                            VIEW CART<i class="fas fa-shopping-cart"><span>{count}</span></i>
                         </MDBNavLink>
                     </MDBNavItem>
                 </MDBNavbarNav>

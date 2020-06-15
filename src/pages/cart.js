@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import { MDBRow, MDBCard, MDBBtn, MDBCol } from "mdbreact";
-import { Navbar, CartPanel } from "../components/index";
+import { Navbar, CartPanel, InputField } from "../components/index";
 import { Context as productContext } from "../context/products";
 const Cart = () => {
     const { cartData } = useContext(productContext);
@@ -18,6 +18,9 @@ const Cart = () => {
     useEffect(() => {
         totalPrice(cartData)
     }, [cartData, totalPrice])
+    const sendOrder = () => {
+
+    }
     return (
         <React.Fragment>
             <Navbar title="Shopping Cart" count={cartData.length} />
@@ -46,7 +49,22 @@ const Cart = () => {
                                 <h5><strong><span>$</span>{totalCartPrice}</strong></h5>
                             </MDBCol>
                             <MDBCol md="5">
-                                <MDBBtn color="success" size="lg">ORDER NOW</MDBBtn>
+
+                            </MDBCol>
+                        </MDBRow>
+                        <MDBRow>
+                            <MDBCol md="12">
+                                <InputField label="Delivery Address" />
+
+                            </MDBCol>
+                            <MDBCol md="12">
+                                <InputField label="Phone Number" />
+                            </MDBCol>
+                            <MDBCol md="12">
+                                <InputField label="Name" />
+                            </MDBCol>
+                            <MDBCol md="12">
+                                <MDBBtn color="success" size="lg" onClick={sendOrder}>ORDER NOW</MDBBtn>
                             </MDBCol>
                         </MDBRow>
                     </MDBCard>
